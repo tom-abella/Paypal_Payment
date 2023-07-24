@@ -8,7 +8,7 @@ function App() {
       purchase_units: [
         {
           amount: {
-            value: "0",
+            value: "1",
           },
         },
       ],
