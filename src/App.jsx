@@ -10,6 +10,11 @@ function App() {
           amount: {
             value: "1",
           },
+          billing_details: {
+            phone: {
+              required: true,
+            },
+          },
         },
       ],
     });
