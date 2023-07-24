@@ -36,7 +36,7 @@ function App() {
         createOrder={(data, actions) => _createOrder(data, actions)}
         onApprove={(data, actions) => _onApprove(data, actions)}
         onCancel={() => _onError("CANCELED")}
-        onError={(err) => _onError("ERROE")}
+        onError={(err) => _onError("ERROR")}
       />
     </div>
   );
