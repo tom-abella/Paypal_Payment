@@ -8,7 +8,7 @@ function App() {
       purchase_units: [
         {
           amount: {
-            value: "0.1",
+            value: "0.01",
           },
           billing_details: {
             phone: {
