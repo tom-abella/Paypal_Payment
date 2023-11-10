@@ -16,14 +16,17 @@ function App() {
   }
 
   const onMessage = (event) => {
-    try {
+    try { 
       let data = JSON.parse(event.data);
-      alert(JSON.stringify(data, null, 2));
+      // alert(JSON.stringify(data.name, null, 2));
 
       // Your logic here based on the received data
+      window.addEventListener("message", message => {
+        alert(message.data) // Wayne is coming!!!
+       })
       
       if (data.name) {
-        alert(`Hello, ${data.name}!`);
+        // alert(`Hello, ${data.name}!`);
       }
     } catch (error) {
       console.error('Error parsing data:', error);
@@ -33,7 +36,9 @@ function App() {
 
   useEffect(() => {
 
-    window.addEventListener('message', onMessage);
+    window.addEventListener("message", message => {
+     alert(message.data) // Wayne is coming!!!
+    })
 
     return () => {
       window.removeEventListener('message', onMessage);
