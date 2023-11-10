@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import ReactDOM from "react-dom";
 import "./App.css";
 const PayPalButton = window.paypal.Buttons.driver("react", { React, ReactDOM });
@@ -14,37 +14,6 @@ function App() {
       ],
     });
   }
-
-  const onMessage = (event) => {
-    try { 
-      let data = JSON.parse(event.data);
-      // alert(JSON.stringify(data.name, null, 2));
-
-      // Your logic here based on the received data
-      window.addEventListener("message", message => {
-        alert(message.data) // Wayne is coming!!!
-       })
-      
-      if (data.name) {
-        // alert(`Hello, ${data.name}!`);
-      }
-    } catch (error) {
-      console.error('Error parsing data:', error);
-      // Handle the error as needed
-    }
-  };
-
-  useEffect(() => {
-
-    window.addEventListener("message", message => {
-     alert(message.data) // Wayne is coming!!!
-    })
-
-    return () => {
-      window.removeEventListener('message', onMessage);
-    };
-  }, []);
-
   async function _onApprove(data, actions) {
     let order = await actions.order.capture();
     console.log(order);
