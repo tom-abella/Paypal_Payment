@@ -18,9 +18,10 @@ function App() {
   const onMessage = (event) => {
     try {
       let data = JSON.parse(event.data);
-      console.log(JSON.stringify(data, null, 2));
+      alert(JSON.stringify(data, null, 2));
 
       // Your logic here based on the received data
+      
       if (data.name) {
         alert(`Hello, ${data.name}!`);
       }
@@ -31,7 +32,7 @@ function App() {
   };
 
   useEffect(() => {
-    alert("Sample")
+
     window.addEventListener('message', onMessage);
 
     return () => {
