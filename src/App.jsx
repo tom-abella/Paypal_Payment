@@ -33,12 +33,14 @@ function App() {
 
   return (
     <div className="container">
+      <div className="content">
       <PayPalButton
         createOrder={(data, actions) => _createOrder(data, actions)}
         onApprove={(data, actions) => _onApprove(data, actions)}
         onCancel={() => _onError("CANCELED")}
         onError={(err) => _onError("ERROE")}
       />
+      </div>
     </div>
   );
 }
