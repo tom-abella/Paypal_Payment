@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import ReactDOM from "react-dom";
 import "./App.css";
 const PayPalButton = window.paypal.Buttons.driver("react", { React, ReactDOM });
@@ -30,6 +30,22 @@ function App() {
     window.ReactNativeWebView &&
       window.ReactNativeWebView.postMessage(JSON.stringify(errObj));
   }
+
+  useEffect(() => {
+    const getData = () => {
+      window.addEventListener('message', (event) => {
+        const data = event.data;
+        if(data){
+          alert(data);
+        }
+        else{
+          alert("Empty");
+        }
+        
+      });
+    }
+    getData()
+  }, [])
 
   return (
     <div className="container">
