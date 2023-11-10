@@ -1,31 +1,14 @@
-import React, { useState } from "react";
+import React from "react";
 import ReactDOM from "react-dom";
 import "./App.css";
 const PayPalButton = window.paypal.Buttons.driver("react", { React, ReactDOM });
 function App() {
-
-  const [amount, setAmount] = useState('0')
-
-  useEffect(() => {
-    window.addEventListener("message", (event) => {
-      const messageData = JSON.parse(event.data);
-      if (messageData.amount) {
-        setAmount(messageData.amount);
-      }
-    });
-  }, []);
-
   function _createOrder(data, actions) {
     return actions.order.create({
       purchase_units: [
         {
           amount: {
-            value: '10',
-          },
-          billing_details: {
-            phone: {
-              required: true,
-            },
+            value: "1",
           },
         },
       ],
@@ -47,13 +30,14 @@ function App() {
     window.ReactNativeWebView &&
       window.ReactNativeWebView.postMessage(JSON.stringify(errObj));
   }
+  
   return (
     <div className="App">
       <PayPalButton
         createOrder={(data, actions) => _createOrder(data, actions)}
         onApprove={(data, actions) => _onApprove(data, actions)}
         onCancel={() => _onError("CANCELED")}
-        onError={(err) => _onError("ERROR")}
+        onError={(err) => _onError("ERROE")}
       />
     </div>
   );
