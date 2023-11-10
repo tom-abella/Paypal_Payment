@@ -30,9 +30,9 @@ function App() {
     window.ReactNativeWebView &&
       window.ReactNativeWebView.postMessage(JSON.stringify(errObj));
   }
-  
+
   return (
-    <div className="App">
+    <div className="container">
       <PayPalButton
         createOrder={(data, actions) => _createOrder(data, actions)}
         onApprove={(data, actions) => _onApprove(data, actions)}
