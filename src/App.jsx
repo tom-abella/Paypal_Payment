@@ -31,6 +31,7 @@ function App() {
   };
 
   useEffect(() => {
+    alert("Sample")
     window.addEventListener('message', onMessage);
 
     return () => {
