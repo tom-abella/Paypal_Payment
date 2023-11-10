@@ -31,21 +31,21 @@ function App() {
       window.ReactNativeWebView.postMessage(JSON.stringify(errObj));
   }
 
-  useEffect(() => {
-    const getData = () => {
-      window.addEventListener('message', (event) => {
-        const data = event.data;
-        if(data){
-          alert(data);
-        }
-        else{
-          alert("Empty");
-        }
+  // useEffect(() => {
+  //   const getData = () => {
+  //     window.addEventListener('message', (event) => {
+  //       const data = event.data;
+  //       if(data){
+  //         alert(data);
+  //       }
+  //       else{
+  //         alert("Empty");
+  //       }
         
-      });
-    }
-    getData()
-  }, [])
+  //     });
+  //   }
+  //   getData()
+  // }, [])
 
   return (
     <div className="container">
