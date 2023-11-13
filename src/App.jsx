@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import ReactDOM from "react-dom";
 import "./App.css";
 const PayPalButton = window.paypal.Buttons.driver("react", { React, ReactDOM });
@@ -31,26 +31,15 @@ function App() {
       window.ReactNativeWebView.postMessage(JSON.stringify(errObj));
   }
 
-  const [receivedData, setReceivedData] = useState(null);
-
   useEffect(() => {
     // Add an event listener to handle messages sent from React Native
     const handleMessage = (event) => {
-      // Handle messages sent from React Native
-      const data = event.data;
-
-      try {
-        const parsedData = JSON.parse(data);
-        // Update state with the received data
-        setReceivedData(parsedData);
-      } catch (error) {
-        console.error('Error parsing received data:', error);
-      }
+      
+      const receivedData = JSON.parse(event.data);
+      alert('Received data in ReactJS:', receivedData);
     };
 
     window.addEventListener('message', handleMessage);
-
-    // Clean up the event listener when the component is unmounted
     return () => {
       window.removeEventListener('message', handleMessage);
     };
@@ -58,12 +47,6 @@ function App() {
 
   return (
     <div className="container">
-      {receivedData && (
-        <div>
-          <p>Received data in ReactJS:</p>
-          <pre>{JSON.stringify(receivedData, null, 2)}</pre>
-        </div>
-      )}
       <PayPalButton
         createOrder={(data, actions) => _createOrder(data, actions)}
         onApprove={(data, actions) => _onApprove(data, actions)}
