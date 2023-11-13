@@ -31,21 +31,19 @@ function App() {
       window.ReactNativeWebView.postMessage(JSON.stringify(errObj));
   }
 
-  // useEffect(() => {
-  //   const getData = () => {
-  //     window.addEventListener('message', (event) => {
-  //       const data = event.data;
-  //       if(data){
-  //         alert(data);
-  //       }
-  //       else{
-  //         alert("Empty");
-  //       }
-        
-  //     });
-  //   }
-  //   getData()
-  // }, [])
+  useEffect(() => {
+    // Add an event listener to handle messages sent from React Native
+    const handleMessage = (event) => {
+      
+      const receivedData = JSON.parse(event.data);
+      alert('Received data in ReactJS:', receivedData);
+    };
+
+    window.addEventListener('message', handleMessage);
+    return () => {
+      window.removeEventListener('message', handleMessage);
+    };
+  }, []);
 
   return (
     <div className="container">
