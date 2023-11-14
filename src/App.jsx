@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import ReactDOM from "react-dom";
 import "./App.css";
 const PayPalButton = paypal.Buttons.driver("react", { React, ReactDOM });
+import LoadingView from "./Loading";
 export default function App() {
 
   const [price, setPrice] = useState(0)
