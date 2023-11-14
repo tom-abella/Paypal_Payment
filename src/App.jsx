@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import ReactDOM from "react-dom";
 import "./App.css";
 const PayPalButton = paypal.Buttons.driver("react", { React, ReactDOM });
-import LoadingView from "./assets/X_Logo_Loader.gif";
 export default function App() {
 
   const [price, setPrice] = useState(0)
@@ -69,11 +68,6 @@ export default function App() {
         onCancel={() => _onError("CANCELED")}
         onError={(err) => _onError("ERROR")}
       />
-      {loading && (
-        <div className="loading">
-          <img src={LoadingView} alt="" className="imgLoading"/>
-        </div>
-      )}
     </div>
   );
 }
