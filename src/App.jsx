@@ -5,8 +5,10 @@ const PayPalButton = paypal.Buttons.driver("react", { React, ReactDOM });
 export default function App() {
 
   const [price, setPrice] = useState(0)
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
+    setLoading(true)
     const handleWebViewLoad = () => {
       if (window.ReactNativeWebView && window.ReactNativeWebView.injectedObjectJson) {
         const injectedObjectJson = window.ReactNativeWebView.injectedObjectJson();
@@ -14,10 +16,11 @@ export default function App() {
           const customValue = JSON.parse(injectedObjectJson);
           setPrice(customValue.customValue)
         }
-        else{
+        else {
           alert("No data fetch", injectedObjectJson)
         }
       }
+      setLoading(false)
     };
     handleWebViewLoad()
     window.onload = handleWebViewLoad;
@@ -26,7 +29,7 @@ export default function App() {
     };
   }, []);
 
-  const _createOrder=(data, actions)=> {
+  const _createOrder = (data, actions) => {
     return actions.order.create({
       purchase_units: [
         {
@@ -38,15 +41,15 @@ export default function App() {
     });
   }
 
-  const _onApprove = async(data, actions)=> {
+  const _onApprove = async (data, actions) => {
     let order = await actions.order.capture();
     console.log(order);
     window.ReactNativeWebView &&
       window.ReactNativeWebView.postMessage(JSON.stringify(order));
     return order;
   }
-  
-  const _onError=(err)=> {
+
+  const _onError = (err) => {
     console.log(err);
     let errObj = {
       err: err,
@@ -64,6 +67,9 @@ export default function App() {
         onCancel={() => _onError("CANCELED")}
         onError={(err) => _onError("ERROR")}
       />
+      {loading && (
+        <LoadingView />
+      )}
     </div>
   );
 }
