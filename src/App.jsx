@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import ReactDOM from "react-dom";
 import "./App.css";
-const PayPalButton = window.paypal.Buttons.driver("react", { React, ReactDOM });
+const PayPalButton = paypal.Buttons.driver("react", { React, ReactDOM });
 export default function App() {
 
   const [price, setPrice] = useState(0)
@@ -37,7 +37,7 @@ export default function App() {
       ],
     });
   }
-  
+
   const _onApprove = async(data, actions)=> {
     let order = await actions.order.capture();
     console.log(order);
