@@ -37,6 +37,7 @@ function App() {
         if (injectedObjectJson) {
           const customValue = JSON.parse(injectedObjectJson).customValue;
           alert('Custom Value:', customValue);
+          alert(injectedObjectJson);
         }
         else{
           alert("No data fetch", injectedObjectJson)
