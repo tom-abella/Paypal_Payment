@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import ReactDOM from "react-dom";
 import "./App.css";
 const PayPalButton = window.paypal.Buttons.driver("react", { React, ReactDOM });
@@ -31,27 +31,25 @@ function App() {
       window.ReactNativeWebView.postMessage(JSON.stringify(errObj));
   }
 
-  // useEffect(() => {
-  //   // Add an event listener to handle messages sent from React Native
-  //   const handleMessage = (event) => {
-      
-  //     const receivedData = JSON.parse(event.data);
-  //     alert('Received data in ReactJS:', receivedData);
-  //   };
+  useEffect(() => {
+    // Add an event listener to handle messages sent from React Native
+    const handleMessageFromReactNative = event => {
+      const receivedData = JSON.parse(event.data);
+      alert('Received data in React JS:', receivedData);
+     
 
-  //   window.addEventListener('message', handleMessage);
-  //   return () => {
-  //     window.removeEventListener('message', handleMessage);
-  //   };
-  // }, []);
-  const [price, setPrice] = useState(50);
-  const handlePriceChange = () => {
-    const newPrice = Math.floor(Math.random() * 100); // Generate a random price for demonstration
-    setPrice(newPrice);
-    
-    // Communicate the new price to React Native
-    window.ReactNativeWebView.postMessage(JSON.stringify(newPrice));
-  };
+      // Do something with the received data
+      // For example, update the state or perform other actions
+    };
+
+    window.addEventListener('message', handleMessageFromReactNative);
+
+    // Cleanup the event listener when the component unmounts
+    return () => {
+      window.removeEventListener('message', handleMessageFromReactNative);
+    };
+  }, []);
+
 
   return (
     <div className="container">
@@ -61,10 +59,6 @@ function App() {
         onCancel={() => _onError("CANCELED")}
         onError={(err) => _onError("ERROR")}
       />
-       <div>
-      <h1>Product Price: ${price}</h1>
-      <button onClick={handlePriceChange}>Change Price</button>
-    </div>
     </div>
   );
 }
