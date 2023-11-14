@@ -79,8 +79,8 @@ export default function App() {
             layout: 'vertical', // 'horizontal' or 'vertical'
             color: 'gold', // 'gold', 'blue', 'silver', or 'white'
             shape: 'pill', // 'rect' or 'pill'
-            label: 'pay', // 'checkout', 'pay', 'buynow', or 'paypal'
-            size: 'responsive', // 'small', 'medium', 'large', or 'responsive'
+            label: 'buynow', // 'checkout', 'pay', 'buynow', or 'paypal'
+            size: 'large', // 'small', 'medium', 'large', or 'responsive'
           }}
         />
       )}
