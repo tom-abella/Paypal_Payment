@@ -64,7 +64,7 @@ export default function App() {
 
   return (
     <div className="container">
-      {!loading ? (
+      {loading ? (
         <div className="loading">
           <img src={LoadingView} alt="" className="imgLoading" />
         </div>
