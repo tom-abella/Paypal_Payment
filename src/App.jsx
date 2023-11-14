@@ -9,7 +9,7 @@ function App() {
       purchase_units: [
         {
           amount: {
-            value: price,
+            value: parseFloat(price),
           },
         },
       ],
@@ -38,6 +38,7 @@ function App() {
         if (injectedObjectJson) {
           const customValue = JSON.parse(injectedObjectJson);
           setPrice(customValue.customValue)
+          alert(customValue.customValue)
         }
         else{
           alert("No data fetch", injectedObjectJson)
