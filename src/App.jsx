@@ -35,7 +35,7 @@ function App() {
       if (window.ReactNativeWebView && window.ReactNativeWebView.injectedObjectJson) {
         const injectedObjectJson = window.ReactNativeWebView.injectedObjectJson();
         if (injectedObjectJson) {
-          const customValue = JSON.parse(injectedObjectJson).customValue;
+          const customValue = JSON.parse(injectedObjectJson);
           alert('Custom Value:', customValue);
           alert(typeof(injectedObjectJson));
         }
