@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import ReactDOM from "react-dom";
 import "./App.css";
 const PayPalButton = window.paypal.Buttons.driver("react", { React, ReactDOM });
@@ -44,6 +44,14 @@ function App() {
   //     window.removeEventListener('message', handleMessage);
   //   };
   // }, []);
+  const [price, setPrice] = useState(50);
+  const handlePriceChange = () => {
+    const newPrice = Math.floor(Math.random() * 100); // Generate a random price for demonstration
+    setPrice(newPrice);
+    
+    // Communicate the new price to React Native
+    window.ReactNativeWebView.postMessage(JSON.stringify(newPrice));
+  };
 
   return (
     <div className="container">
@@ -53,6 +61,10 @@ function App() {
         onCancel={() => _onError("CANCELED")}
         onError={(err) => _onError("ERROR")}
       />
+       <div>
+      <h1>Product Price: ${price}</h1>
+      <button onClick={handlePriceChange}>Change Price</button>
+    </div>
     </div>
   );
 }
