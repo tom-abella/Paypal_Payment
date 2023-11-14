@@ -63,11 +63,6 @@ export default function App() {
         onApprove={(data, actions) => _onApprove(data, actions)}
         onCancel={() => _onError("CANCELED")}
         onError={(err) => _onError("ERROR")}
-        options={{
-          clientId:
-            "Aarje89nSzQqJbiuSEdBBkckJBJdqcuBgV7cxtcf1R50ol8DgXLi4mzCc8xDDatX7bUFpftnJgEwq0HG",
-          currency: "PHP",
-        }}
       />
     </div>
   );
