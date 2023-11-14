@@ -64,7 +64,7 @@ export default function App() {
 
   return (
     <div className="container">
-      {loading ? (
+      {!loading ? (
         <div className="loading">
           <img src={LoadingView} alt="" className="imgLoading" />
         </div>
@@ -79,7 +79,7 @@ export default function App() {
             layout: 'vertical', // 'horizontal' or 'vertical'
             color: 'gold', // 'gold', 'blue', 'silver', or 'white'
             shape: 'pill', // 'rect' or 'pill'
-            label: 'buynow', // 'checkout', 'pay', 'buynow', or 'paypal'
+            label: 'pay', // 'checkout', 'pay', 'buynow', or 'paypal'
             size: 'large', // 'small', 'medium', 'large', or 'responsive'
           }}
         />
