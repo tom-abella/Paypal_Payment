@@ -63,27 +63,33 @@ export default function App() {
   }
 
   return (
-    <div className="container">
-      {!loading ? (
-        <div className="loading">
-          <img src={LoadingView} alt="" className="imgLoading" />
+    <>
+      {loading ? (
+        <div className="container2">
+          <div className="loading">
+            <img src={LoadingView} alt="" className="imgLoading" />
+          </div>
         </div>
       ) : (
-        <PayPalButton
-        className='buttonPaypal'
-          createOrder={(data, actions) => _createOrder(data, actions)}
-          onApprove={(data, actions) => _onApprove(data, actions)}
-          onCancel={() => _onError("CANCELED")}
-          onError={(err) => _onError("ERROR")}
-          style={{
-            layout: 'vertical', // 'horizontal' or 'vertical'
-            color: 'gold', // 'gold', 'blue', 'silver', or 'white'
-            shape: 'pill', // 'rect' or 'pill'
-            label: 'pay', // 'checkout', 'pay', 'buynow', or 'paypal'
-            size: 'large', // 'small', 'medium', 'large', or 'responsive'
-          }}
-        />
+        <div className="container">
+          <PayPalButton
+            className='buttonPaypal'
+            createOrder={(data, actions) => _createOrder(data, actions)}
+            onApprove={(data, actions) => _onApprove(data, actions)}
+            onCancel={() => _onError("CANCELED")}
+            onError={(err) => _onError("ERROR")}
+            style={{
+              layout: 'vertical', // 'horizontal' or 'vertical'
+              color: 'gold', // 'gold', 'blue', 'silver', or 'white'
+              shape: 'pill', // 'rect' or 'pill'
+              label: 'pay', // 'checkout', 'pay', 'buynow', or 'paypal'
+              size: 'large', // 'small', 'medium', 'large', or 'responsive'
+            }}
+          />
+        </div>
       )}
-    </div>
+
+    </>
+
   );
 }
