@@ -30,23 +30,23 @@ function App() {
     window.ReactNativeWebView &&
       window.ReactNativeWebView.postMessage(JSON.stringify(errObj));
   }
-
   useEffect(() => {
-    // Add an event listener to handle messages sent from React Native
-    const handleMessageFromReactNative = event => {
-      const receivedData = JSON.parse(event.data);
-      alert('Received data in React JS:', receivedData);
-     
-
-      // Do something with the received data
-      // For example, update the state or perform other actions
+    const handleWebViewLoad = () => {
+      if (window.ReactNativeWebView && window.ReactNativeWebView.injectedObjectJson) {
+        const injectedObjectJson = window.ReactNativeWebView.injectedObjectJson();
+        if (injectedObjectJson) {
+          const customValue = JSON.parse(injectedObjectJson).customValue;
+          // ... Do something with customValue
+          alert('Custom Value:', customValue);
+        }
+      }
     };
 
-    window.addEventListener('message', handleMessageFromReactNative);
+    window.onload = handleWebViewLoad;
 
     // Cleanup the event listener when the component unmounts
     return () => {
-      window.removeEventListener('message', handleMessageFromReactNative);
+      window.onload = null;
     };
   }, []);
 
