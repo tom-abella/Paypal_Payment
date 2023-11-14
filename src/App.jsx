@@ -43,6 +43,7 @@ function App() {
         }
       }
     };
+    handleWebViewLoad()
 
     window.onload = handleWebViewLoad;
 
