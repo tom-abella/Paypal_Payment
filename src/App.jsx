@@ -75,6 +75,13 @@ export default function App() {
           onApprove={(data, actions) => _onApprove(data, actions)}
           onCancel={() => _onError("CANCELED")}
           onError={(err) => _onError("ERROR")}
+          style={{
+            layout: 'vertical', // 'horizontal' or 'vertical'
+            color: 'gold', // 'gold', 'blue', 'silver', or 'white'
+            shape: 'pill', // 'rect' or 'pill'
+            label: 'pay', // 'checkout', 'pay', 'buynow', or 'paypal'
+            size: 'responsive', // 'small', 'medium', 'large', or 'responsive'
+          }}
         />
       )}
     </div>
