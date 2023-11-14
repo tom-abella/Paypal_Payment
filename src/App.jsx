@@ -3,6 +3,7 @@ import ReactDOM from "react-dom";
 import "./App.css";
 const PayPalButton = paypal.Buttons.driver("react", { React, ReactDOM });
 import LoadingView from "./assets/X_Logo_Loader.gif";
+import styles from './index.css';
 export default function App() {
 
   const [price, setPrice] = useState(0)
@@ -63,12 +64,13 @@ export default function App() {
 
   return (
     <div className="container">
-      {loading ? (
+      {!loading ? (
         <div className="loading">
           <img src={LoadingView} alt="" className="imgLoading" />
         </div>
       ) : (
         <PayPalButton
+        className='buttonPaypal'
           createOrder={(data, actions) => _createOrder(data, actions)}
           onApprove={(data, actions) => _onApprove(data, actions)}
           onCancel={() => _onError("CANCELED")}
