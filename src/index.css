@@ -4,13 +4,19 @@
   height: 100%;
 }
 .loading {
-  position: 'absolute';
-  left: 0;
-  right: 0;
-  top: 0;
-  bottom: 0;
-  display: flex;
-  align-items: 'center';
-  justify-content: 'center';
-  background: '#000000a8';
+ position: absolute;
+ top: 0;
+ bottom: 0;
+ left: 0;
+ right: 0;
+ height: 100%;
+ width: 100%;
+ background: '#000000a8';
+ display: flex;
+ align-items: center;
+ justify-items: center;
+ z-index: 50;
+}
+.imgLoading{
+  width: 100%;
 }

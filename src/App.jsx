@@ -2,26 +2,27 @@ import React, { useEffect, useState } from "react";
 import ReactDOM from "react-dom";
 import "./App.css";
 const PayPalButton = paypal.Buttons.driver("react", { React, ReactDOM });
-import LoadingView from "./Loading";
+import LoadingView from "./assets/X_Logo_Loader.gif";
 export default function App() {
 
   const [price, setPrice] = useState(0)
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    setLoading(true)
     const handleWebViewLoad = () => {
       if (window.ReactNativeWebView && window.ReactNativeWebView.injectedObjectJson) {
         const injectedObjectJson = window.ReactNativeWebView.injectedObjectJson();
         if (injectedObjectJson) {
           const customValue = JSON.parse(injectedObjectJson);
           setPrice(customValue.customValue)
+          setLoading(false)
         }
         else {
           alert("No data fetch", injectedObjectJson)
+          setLoading(false)
         }
       }
-      setLoading(false)
+      
     };
     handleWebViewLoad()
     window.onload = handleWebViewLoad;
@@ -69,7 +70,9 @@ export default function App() {
         onError={(err) => _onError("ERROR")}
       />
       {loading && (
-        <LoadingView />
+        <div className="loading">
+          <img src={LoadingView} alt="" className="imgLoading"/>
+        </div>
       )}
     </div>
   );
