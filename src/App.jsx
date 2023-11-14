@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import ReactDOM from "react-dom";
 import "./App.css";
 const PayPalButton = paypal.Buttons.driver("react", { React, ReactDOM });
+import LoadingView from "./assets/X_Logo_Loader.gif";
 export default function App() {
 
   const [price, setPrice] = useState(0)
@@ -13,17 +14,17 @@ export default function App() {
         const injectedObjectJson = window.ReactNativeWebView.injectedObjectJson();
         if (injectedObjectJson) {
           const customValue = JSON.parse(injectedObjectJson);
-          setPrice(customValue.customValue)
-          setLoading(false)
+          setPrice(customValue.customValue);
+          setLoading(false);
         }
         else {
-          alert("No data fetch", injectedObjectJson)
-          setLoading(false)
+          alert("No data fetch", injectedObjectJson);
+          setLoading(false);
         }
       }
-      
     };
-    handleWebViewLoad()
+
+    handleWebViewLoad();
     window.onload = handleWebViewLoad;
     return () => {
       window.onload = null;
@@ -62,12 +63,18 @@ export default function App() {
 
   return (
     <div className="container">
-      <PayPalButton
-        createOrder={(data, actions) => _createOrder(data, actions)}
-        onApprove={(data, actions) => _onApprove(data, actions)}
-        onCancel={() => _onError("CANCELED")}
-        onError={(err) => _onError("ERROR")}
-      />
+      {loading ? (
+        <div className="loading">
+          <img src={LoadingView} alt="" className="imgLoading" />
+        </div>
+      ) : (
+        <PayPalButton
+          createOrder={(data, actions) => _createOrder(data, actions)}
+          onApprove={(data, actions) => _onApprove(data, actions)}
+          onCancel={() => _onError("CANCELED")}
+          onError={(err) => _onError("ERROR")}
+        />
+      )}
     </div>
   );
 }
