@@ -1,14 +1,15 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import ReactDOM from "react-dom";
 import "./App.css";
 const PayPalButton = window.paypal.Buttons.driver("react", { React, ReactDOM });
 function App() {
+  const [price, setPrice] = useState(0)
   function _createOrder(data, actions) {
     return actions.order.create({
       purchase_units: [
         {
           amount: {
-            value: "1",
+            value: price,
           },
         },
       ],
@@ -36,8 +37,7 @@ function App() {
         const injectedObjectJson = window.ReactNativeWebView.injectedObjectJson();
         if (injectedObjectJson) {
           const customValue = JSON.parse(injectedObjectJson);
-          alert(`customValue, ${customValue}`);
-          alert(`customValue, ${customValue.customValue}`);
+          setPrice(customValue.customValue)
         }
         else{
           alert("No data fetch", injectedObjectJson)
