@@ -36,8 +36,10 @@ function App() {
         const injectedObjectJson = window.ReactNativeWebView.injectedObjectJson();
         if (injectedObjectJson) {
           const customValue = JSON.parse(injectedObjectJson).customValue;
-          // ... Do something with customValue
           alert('Custom Value:', customValue);
+        }
+        else{
+          alert("No data fetch", injectedObjectJson)
         }
       }
     };
