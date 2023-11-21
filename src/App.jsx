@@ -38,6 +38,7 @@ export default function App() {
         {
           amount: {
             value: parseFloat(price),
+            // value: 0.5,
           },
         },
       ],
@@ -64,7 +65,7 @@ export default function App() {
 
   return (
     <>
-      {loading ? (
+      {!loading ? (
         <div className="container2">
           <div className="loading">
             <img src={LoadingView} alt="" className="imgLoading" />
@@ -77,7 +78,7 @@ export default function App() {
             createOrder={(data, actions) => _createOrder(data, actions)}
             onApprove={(data, actions) => _onApprove(data, actions)}
             onCancel={() => _onError("CANCELED")}
-            onError={(err) => _onError("ERROR")}
+            onError={() => _onError("ERROR")}
             style={{
               layout: 'vertical', // 'horizontal' or 'vertical'
               color: 'gold', // 'gold', 'blue', 'silver', or 'white'
