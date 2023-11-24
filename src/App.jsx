@@ -2,12 +2,10 @@ import React, { useEffect, useState } from "react";
 import ReactDOM from "react-dom";
 import "./App.css";
 const PayPalButton = paypal.Buttons.driver("react", { React, ReactDOM });
-import LoadingView from "./assets/X_Logo_Loader.gif";
 import styles from './index.css';
 export default function App() {
 
   const [price, setPrice] = useState(0)
-  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const handleWebViewLoad = () => {
@@ -16,11 +14,9 @@ export default function App() {
         if (injectedObjectJson) {
           const customValue = JSON.parse(injectedObjectJson);
           setPrice(customValue.customValue);
-          setLoading(false);
         }
         else {
           alert("No data fetch", injectedObjectJson);
-          setLoading(false);
         }
       }
     };
@@ -65,13 +61,7 @@ export default function App() {
 
   return (
     <>
-      {!loading ? (
-        <div className="container2">
-          <div className="loading">
-            <img src={LoadingView} alt="" className="imgLoading" />
-          </div>
-        </div>
-      ) : (
+
         <div className="container">
           <PayPalButton
             className='buttonPaypal'
@@ -88,7 +78,6 @@ export default function App() {
             }}
           />
         </div>
-      )}
 
     </>
 
